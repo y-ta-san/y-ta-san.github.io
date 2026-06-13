@@ -1,0 +1,138 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% tcbset 
+% history
+% v1.0 : 27 Feb, 2026
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Blue: 信頼感のあるスレートブルー系
+\definecolor{mod-blue-bg}{HTML}{F0F4F8}
+\definecolor{mod-blue-ln}{HTML}{476683}
+\definecolor{ProbBlue}{HTML}{E2EAF4}
+\definecolor{ProbBorder}{HTML}{3867D6}
+
+% Green: 自然で落ち着いたセージグリーン系
+\definecolor{mod-green-bg}{HTML}{F1F4F0}
+\definecolor{mod-green-ln}{HTML}{557555}
+\definecolor{ExamGreen}{HTML}{E8F2E9}
+\definecolor{ExamBorder}{HTML}{2D6A4F}
+
+% Gray/Neutral: 洗練されたウォームグレー・サンド系
+\definecolor{mod-gray-bg}{HTML}{FAFAFA}
+\definecolor{mod-gray-ln}{HTML}{5F6368}
+
+% Accent/Alert: 重要な定義など（sbox0等に推奨）
+\definecolor{mod-accent-bg}{HTML}{FFF9E6} % 非常に薄い琥珀色
+\definecolor{mod-accent-ln}{HTML}{D97706} % 落ち着いたオレンジ
+
+%\definecolor{mod-blue-bg}{HTML}{F4F7F9}
+%\definecolor{mod-blue-ln}{HTML}{4A6984}
+%\definecolor{mod-green-bg}{HTML}{F2F5F1}
+%\definecolor{mod-green-ln}{HTML}{5E7D5E}
+%\definecolor{mod-gray-bg}{HTML}{F8F8F7}
+%\definecolor{mod-gray-ln}{HTML}{50504F}
+%\definecolor{ProbBlue}{HTML}{E8F0FE}
+%\definecolor{ProbBorder}{HTML}{4285F4}
+%\definecolor{ExamGreen}{HTML}{EAF5EA}
+%\definecolor{ExamBorder}{HTML}{2E7D32}
+
+\tcbset{
+    modern-base/.style={
+        breakable,
+        enhanced,
+        frame hidden,
+        sharp corners,
+        boxsep=5pt,
+        left=3pt,
+        right=3pt,
+        leftrule=0pt,
+        toprule=0pt,
+        rightrule=0pt,
+        bottomrule=0pt,
+        before upper={\setlength{\parindent}{1\zw}}
+    }
+}
+
+%% --- 各ボックスの再定義 ---
+
+% dbox0: 点線・白背景（極めてシンプル）
+\NewTColorBox{dbox0}{}{
+    modern-base,
+    borderline={0.3pt}{0pt}{black, dashed},
+    colback=white
+}
+
+% dbox1: 点線・薄い青背景（注釈や導出過程向け）
+\NewTColorBox{dbox1}{}{
+    modern-base,
+    borderline={0.3pt}{0pt}{mod-blue-ln, dashed},
+    colback=mod-blue-bg
+}
+\newcounter{daisu}
+\NewTColorBox[use counter=daisu]{daisu}{}{
+    modern-base,
+    borderline={0.4pt}{0pt}{mod-gray-ln},
+    colback=mod-gray-bg,
+    before upper={\fbox{\textbf{\thedaisu}}\quad} % 必要に応じてタイトルなどにカウンタの値を表示できます
+}
+
+% sbox0: 実線・薄い緑背景（公式や重要な定義向け）
+\NewTColorBox{sbox0}{}{
+    modern-base,
+    borderline={0.4pt}{0pt}{mod-green-ln},
+    %colback=mod-green-bg
+    colback=mod-accent-bg
+}
+
+% sbox1: 実線・薄いグレー背景（別のアプローチや参考情報向け）
+\NewTColorBox{sbox1}{}{
+    modern-base,
+    borderline={0.4pt}{0pt}{mod-gray-ln},
+    colback=mod-gray-bg
+}
+
+% Problem用の共通スタイル
+\tcbset{
+    modernstyle/.style={
+        breakable,
+        enhanced,
+        frame hidden,
+        sharp corners, % あえて角を立てるか、arc=2pt程度で少し丸めるのがモダン
+        boxrule=0pt,
+        left=10pt,
+        right=10pt,
+        top=5pt,
+        bottom=5pt,
+        borderline west={2pt}{0pt}{#1}, % 左側に細い縦線を入れる
+    }
+}
+
+% Problem環境
+\newcounter{prob}
+\newtcolorbox[auto counter, use counter=prob]{prob}{
+    modernstyle=ProbBorder,
+    colback=ProbBlue!50,
+    before upper={%
+        \textbf{\textcolor{ProbBorder}{Problem \thetcbcounter}} \hspace{0.5em}%
+    }
+}
+
+% Problem (Section numbering) 環境
+\newtcolorbox[auto counter, use counter=prob, number within=section]{prob_s}{
+    modernstyle=ProbBorder,
+    colback=ProbBlue!50,
+    before upper={%
+        \textbf{\textcolor{ProbBorder}{Problem \thetcbcounter}} \hspace{0.5em}%
+    }
+}
+
+% Example環境
+\newcounter{exam}
+\newtcolorbox[auto counter, use counter=exam, number within=section]{exam_s}{
+    modernstyle=ExamBorder,
+    colback=ExamGreen!60,
+    before upper={%
+        \textbf{\textcolor{ExamBorder}{Example \thetcbcounter}} \hspace{0.5em}%
+    },
+    after upper={\hfill\textcolor{ExamBorder}{\ding{72}}}
+}

@@ -1,0 +1,105 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% redefinition of command
+% history 
+% v1.0 : 27 Feb, 2026
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% kana counter (using expl3)
+\ExplSyntaxOn
+\makeatletter
+\cs_new:Npn \kana_map:n #1 {
+  \ifcase #1 \or ア \or イ \or ウ \or エ \or オ \or カ \or キ \or ク \or ケ \or コ
+  \or サ \or シ \or ス \or セ \or ソ \or タ \or チ \or ツ \or テ \or ト 
+  \or ナ \or ニ \orヌ \or ネ \or ノ \or ハ \or ヒ \or フ \or ヘ \or ホ
+  \or マ \or ミ \or ム \or メ \or モ \or ヤ \or ユ \or ヨ \or ラ \or リ
+  \or ル \or レ \or ロ \or ワ \or ヲ \or ン \fi
+}
+\NewDocumentCommand{\kana}{m}{
+  \expandafter \kana_map:n \csname c@#1\endcsname
+}
+\AddEnumerateCounter{\kana}{\kana_map:n}{ア}
+\makeatother
+\ExplSyntaxOff
+
+%%% mathematics
+% change font
+\NewDocumentCommand{\mr}{m}{\symup{#1}}
+\NewDocumentCommand{\mb}{m}{\symbf{#1}}
+\NewDocumentCommand{\bs}{m}{\symbf{#1}}
+\NewDocumentCommand{\bb}{m}{\symbb{#1}}
+\NewDocumentCommand{\scr}{m}{\symscr{#1}}
+%\RenewDocumentCommand{\emph}{m}{\textgt{\textsf{\textbf{#1}}}}
+
+% sets
+\NewDocumentCommand{\R}{}{\symbb{R}}
+\NewDocumentCommand{\N}{}{\symbb{N}}
+\NewDocumentCommand{\C}{}{\symbb{C}}
+\NewDocumentCommand{\Z}{}{\symbb{Z}}
+
+% const.
+\RenewDocumentCommand{\i}{}{\symup{i}}
+\NewDocumentCommand{\e}{}{\symup{e}}
+
+% matrix, average, order
+\NewDocumentCommand{\mqty}{m}{\begin{matrix} #1 \end{matrix}}
+\NewDocumentCommand{\avg}{m}{\langle #1 \rangle}
+\NewDocumentCommand{\order}{m}{\mathcal{O}(#1)}
+\NewDocumentCommand{\eval}{m}{
+  #1 \mathclose{
+    \rule[-2.0ex]{0.4pt}{5.5ex}\,
+  }
+}
+
+% differential op
+\NewDocumentCommand{\grad}{}{\nabla}
+\RenewDocumentCommand{\div}{}{\nabla \cdot}
+\NewDocumentCommand{\rot}{}{\nabla \times}
+\NewDocumentCommand{\nb}{}{\nabla}
+
+%% DIFFCOEFF PKG SETTING
+\difdef { l } { dn } { style = d^ }
+\NewDocumentCommand \dn { m m } { \dl.dn.[#1]{#2}\, }
+\difdef{l}{p}{op-symbol=\partial}
+\NewDocumentCommand \dlp {} { \dl.p. }
+\difdef { l } {} {outer-Rdelim = \,}
+\difdef {f, s} {D}{op-symbol = \symup{D}}
+\NewDocumentCommand{\Dl}{m}{\upDelta{#1}}
+
+
+%%% abbrv.
+\NewDocumentCommand{\eps}{}{\varepsilon}
+
+%%% layout
+\NewDocumentCommand{\qq}{}{\quad}
+\NewDocumentCommand{\qqtext}{m}{\quad \text{#1} \quad}
+\NewDocumentCommand{\ds}{}{\displaystyle}
+
+%%% color
+\definecolor{mint}{HTML}{3EB370}
+\definecolor{dark-mint}{HTML}{2E8555}
+\RenewDocumentCommand{\CancelColor}{}{\color{ForestGreen}}
+\NewDocumentCommand{\blue}{m}{\textcolor{blue}{#1}}
+\NewDocumentCommand{\red}{m}{\textcolor{red}{#1}}
+
+%%% other configuration
+%\RenewDocumentCommand{\qedsymbol}{}{\blacksquare}
+\AtBeginDocument{
+\RenewDocumentCommand{\figurename}{}{Figure\,}
+\RenewDocumentCommand{\proofname}{}{\bfseries\sffamily\gtfamily Proof.}
+}
+
+
+
+
+
+% equation number (section.eq)
+\numberwithin{equation}{section}
+
+
+\RenewPageStyle{plain}{ % jlreq標準のplainスタイル（ページ番号のみ）を更新
+  nombre=\thepage,
+  nombre_position=top-right,
+  }
+
+% 定義したスタイルを適用
+\pagestyle{plain}

@@ -1,0 +1,91 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% layout setting
+% for 2 column documents
+% history
+% v1.0 : 27 Feb, 2026
+% v1.1 : 16 Mar, 2026
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\jlreqsetup{
+  itemization_beforeafter_space = 0pt,
+  itemization_labelsep = 0.5\zw,
+  caption_font = \small,
+  caption_label_font = \small\bfseries,
+}
+
+\ModifyHeading{section}{
+  lines=1,
+  before_lines=2,
+  before_space=0\baselineskip,
+  after_space=0.5\baselineskip
+}
+
+\ModifyHeading{subsection}{%
+  font={\normalsize\bfseries\gtfamily\sffamily},
+  lines=1,
+  before_lines=1,
+  before_space=0.5\baselineskip,
+  after_space=0.5\baselineskip
+}
+
+\ModifyHeading{subsubsection}{%
+  font={\normalsize\bfseries\gtfamily\sffamily},
+  lines=1,
+  before_lines=1,
+  before_space=0.5\baselineskip,
+  after_space=0.5\baselineskip
+}
+
+\SetBlockHeadingSpaces{
+  {
+    _section{
+      before_lines=2,
+      lines=1,
+      before_space=1.5\baselineskip,
+      after_space=0.5\baselineskip
+    },
+    _subsection{
+      %before_lines=0.5,
+      lines=1,
+      before_space=0\baselineskip,
+      after_space=0.5\baselineskip
+    },
+    _subsubsection{
+      lines=1,
+      before_space=0\baselineskip,
+      after_space=0.5\baselineskip
+    }
+  }
+  {
+    _section{
+      before_lines=1,
+      lines=2,
+      before_space=0\baselineskip,
+      after_space=0.5\baselineskip
+    },
+    _subsection{
+      %before_lines=0.5,
+      lines=2,
+      before_space=0\baselineskip,
+      after_space=0.5\baselineskip
+    }
+  }
+  {
+    _subsection{
+      before_lines=1,
+      lines=1,
+      before_space=0\baselineskip,
+      after_space=0.5\baselineskip
+    },
+    _subsubsection{
+      lines=1,
+      before_space=0\baselineskip,
+      after_space=0.5\baselineskip
+    }
+  }
+}
+
+
+\renewcommand{\labelitemi}{\adfbullet{36}}
+\renewcommand{\labelitemii}{\adfbullet{52}}
+\renewcommand{\labelitemiii}{\adfbullet{25}}

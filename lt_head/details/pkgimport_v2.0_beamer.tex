@@ -1,0 +1,92 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LaTeX package common import
+%
+% history
+% v1.0 : Feb 27, 2026
+% v2.0 : Apr 17, 2026
+% remove hyperref pkg. for beamer class
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Graphics and Core Layout
+\usepackage{graphicx}% allow includeing external graphics/images
+\usepackage{tikz}% provide graphics programmatically
+\usepackage{wrapstuff}% allow wrapping text
+\usepackage{subcaption}% allow sub-figures and sub-tables
+\usepackage{multicol}% switch single and multiple column layout
+\usepackage{float}% provide advanced control og floating elements (here etc.)
+
+
+%%% Mathematics
+\usepackage{amsmath,amsthm}% core tools fot math typesetting
+	\allowdisplaybreaks[2]
+\usepackage{stmaryrd}% adds various symbols
+\usepackage[
+  math-style=ISO,%
+  warnings-off={mathtools-colon,mathtools-overbracket}%
+]{unicode-math}% supports unicode (opentype) math fonts in LuaLaTeX
+\usepackage{physics2}% supports physics-related notation
+  \usephysicsmodule{ab}
+  \usephysicsmodule{braket}
+  \usephysicsmodule{diagmat}
+  \usephysicsmodule{doubleprod}
+  \usephysicsmodule{xmat}
+\usepackage{mathtools}% fix amsmath bugs, xarrow
+\usepackage[ISO]{diffcoeff}% simplifies the typesetting derivatives
+\usepackage[a]{esvect}% flexible vector notation (using arrow)
+\usepackage{cancel}% provide diagonal lines through terms to show cancellation
+\usepackage{empheq}% emphasize equation using boxes
+
+
+%%% Units and Formatting
+\usepackage[range-phrase= \text{\,--\,},simplify-uncertainty]{siunitx}% standard typesetting of SI units
+	\DeclareSIUnit\angstrom{\text{Å}}
+\usepackage[shortlabels,inline]{enumitem}% provide list environment(itemized, numbered)
+\usepackage{url}% formatting url
+\usepackage{time}% get current time
+\usepackage{lastpage}% get number of lastpage
+
+
+%%% Boxes and Decorations
+\usepackage[listings]{tcolorbox}% create customizable boxes
+	\tcbuselibrary{breakable}
+	\tcbuselibrary{raster,skins}
+\usepackage{ascmac}% create boxes (itembox, screen)
+\usepackage{fancybox}% create boxes (shadowbox, doublebox)
+\usepackage{fancyhdr}% customize headers and footers
+\usepackage{varwidth}% creates minipage-like box
+\usepackage[dvipsnames]{xcolor}% provide color support
+\usepackage{adfbullets}% provide bullets (adfsymbols)
+\usepackage{circledsteps}% circled characters
+\usepackage{pifont}% provide other special characters
+
+
+%%% Coding and Bibliography
+\usepackage{listings,jvlisting}% format source code with japanese support
+  \lstset{
+  basicstyle={\ttfamily\gtfamily},%
+  identifierstyle={\ttfamily},%
+  keywordstyle={\ttfamily\bfseries},%
+  frame={tblr},%
+  breaklines=true,%
+  columns=[l]{fullflexible},%
+  numbers=left,%
+  xrightmargin=0\zw,%
+  xleftmargin=5ex,%
+  xrightmargin=3ex,%
+  numberstyle={\ttfamily\scriptsize},%
+  numbersep=3ex,%
+  lineskip=-1.ex,%
+  backgroundcolor=\color{black!3!white},
+  fontadjust=true
+  }
+\usepackage{verbatim}% print symbols as plain text (w/o $,%,& etc....)
+\usepackage{comment}% provide comment section
+\usepackage{natbib}% Advanced bibliography management system
+
+
+%%% Language etc.
+\usepackage[english]{babel}% manage language-specific rules
+
+
+%%% for beamer
+% \usepackage{extsizes}
