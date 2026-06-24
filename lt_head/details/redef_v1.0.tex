@@ -20,6 +20,8 @@
 \AddEnumerateCounter{\kana}{\kana_map:n}{ア}
 \makeatother
 \ExplSyntaxOff
+%\RenewDocumentCommand{\emph}{m}{\textbf{\textsf{\textgt{#1}}}}
+\RenewDocumentCommand{\emph}{m}{{\sffamily\bfseries\gtfamily\kanjiseries{m}\selectfont #1}}
 
 %%% mathematics
 % change font

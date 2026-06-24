@@ -7,35 +7,24 @@
 \usepackage[no-math,deluxe,expert]{luatexja-preset}
 
 % change english font
-%\setmainfont{KpRoman}
-%\setmainfont{TeX Gyre Schola}
-%\setmainfont{newcm10-book}
-\setmainfont{xits-regular}
-\setmonofont{inconsolata}
-%\setsansfont{GilliusADFNo2-Regular}
-%\setsansfont{A P-SK IshiiGothic StdN R}
-\setsansfont{Arsenal}
+%\setmainfont{xits-regular}
+%\setmonofont{inconsolata}
+%\setsansfont{Arsenal}
+%
+%% change math font
+%\setmathfont{xitsmath-regular}
 
-% change math font
-%\setmathfont{KpMath}
-%\setmathfont{TeX Gyre Schola Math}
-%\setmathfont{newcmmath-regular}
-\setmathfont{xitsmath-regular}
+%\usepackage[quiet]{xstix2}
+\setmainfont{STIX Two Text}
+\setmathfont{STIX Two Math}
+\setmathfont{xitsmath-regular}[range={"1D703}]
+%\setmathfont{xitsmath-regular}
 
 
-% change japanese font
-%  \setmainjfont{A P-OTF RyuminKS+ ProN R}[
-%  	BoldFont = {A P-OTF RyuminKS+ ProN B}
-%  ]
-%  \setsansjfont{A P-OTF Gothic MB101 Pr6N R}[
-%  	Scale=0.95,
-%  	BoldFont={A P-OTF Gothic MB101 Pr6N M}
-%	]
-
-\setmainjfont{A P-OTF UD Reimin Pr6N R}[
-  BoldFont = {A P-OTF UD Reimin Pr6N B}
-]
-\setsansjfont{A P-SK IshiiGothic StdN M}[
-  Boldfont = {A P-SK IshiiGothic StdN EB}
+\setmainjfont{PReimPr6N-Regular}[
+  BoldFont = {PReimPr6N-Bold}
 ]
 
+\setsansjfont{PA1GothicStdN-Regular}[
+  BoldFont = {PA1GothicStdN-Medium}
+]

@@ -1,0 +1,92 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% redefinition of command
+% history 
+% v1.0 : 27 Feb, 2026
+% v2.0 : 24 Jun, 2026
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% kana counter (using expl3)
+\ExplSyntaxOn
+\makeatletter
+\cs_new:Npn \kana_map:n #1 {
+  \ifcase #1 \or ア \or イ \or ウ \or エ \or オ \or カ \or キ \or ク \or ケ \or コ
+  \or サ \or シ \or ス \or セ \or ソ \or タ \or チ \or ツ \or テ \or ト 
+  \or ナ \or ニ \orヌ \or ネ \or ノ \or ハ \or ヒ \or フ \or ヘ \or ホ
+  \or マ \or ミ \or ム \or メ \or モ \or ヤ \or ユ \or ヨ \or ラ \or リ
+  \or ル \or レ \or ロ \or ワ \or ヲ \or ン \fi
+}
+\newcommand{\kana}[1]{
+  \expandafter \kana_map:n \csname c@#1\endcsname
+}
+\makeatother
+\ExplSyntaxOff
+
+\renewcommand{\emph}[1]{{\sffamily\bfseries\gtfamily\kanjiseries{m}\selectfont #1}}
+
+%%% mathematics
+% change font
+\newcommand{\mr}[1]{\symup{#1}}
+\newcommand{\mb}[1]{\symbf{#1}}
+\newcommand{\bs}[1]{\symbf{#1}}
+\newcommand{\bb}[1]{\symbb{#1}}
+\newcommand{\scr}[1]{\symscr{#1}}
+
+% sets
+\newcommand{\R}{\symbb{R}}
+\newcommand{\N}{\symbb{N}}
+\newcommand{\C}{\symbb{C}}
+\newcommand{\Z}{\symbb{Z}}
+
+% const.
+\renewcommand{\i}{\symup{i}}
+\newcommand{\e}{\symup{e}}
+
+% matrix, average, order
+\newcommand{\mqty}[1]{\begin{matrix} #1 \end{matrix}}
+\newcommand{\avg}[1]{\langle #1 \rangle}
+\newcommand{\order}[1]{\mathcal{O}(#1)}
+\newcommand{\eval}[1]{
+  #1 \mathclose{
+    \rule[-2.0ex]{0.4pt}{5.5ex}\,
+  }
+}
+
+% differential op
+\newcommand{\grad}{\nabla}
+\renewcommand{\div}{\nabla \cdot}
+\newcommand{\rot}{\nabla \times}
+\newcommand{\nb}{\nabla}
+
+%% DIFFCOEFF PKG SETTING
+\difdef { l } { dn } { style = d^ }
+\newcommand{\dn}[2]{ \dl.dn.[#1]{#2}\, }
+\difdef{l}{p}{op-symbol=\partial}
+\newcommand{\dlp}{ \dl.p. }
+\difdef { l } {} {outer-Rdelim = \,}
+\difdef {f, s} {D}{op-symbol = \symup{D}}
+\newcommand{\Dl}[1]{\upDelta{#1}}
+
+%%% abbrv.
+\newcommand{\eps}{\varepsilon}
+
+%%% layout
+\newcommand{\qq}{\quad}
+\newcommand{\qqtext}[1]{\quad \text{#1} \quad}
+\newcommand{\ds}{\displaystyle}
+
+%%% color
+\definecolor{mint}{HTML}{3EB370}
+\definecolor{dark-mint}{HTML}{2E8555}
+\renewcommand{\CancelColor}{\color{ForestGreen}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+
+%%% other configuration
+\AtBeginDocument{
+  \renewcommand{\figurename}{Figure\,}
+  \renewcommand{\proofname}{\bfseries\sffamily\gtfamily Proof.}
+}
+
+% equation number (section.eq)
+\numberwithin{equation}{section}
+
