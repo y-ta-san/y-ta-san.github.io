@@ -6,7 +6,6 @@
 
 % kana counter (using expl3)
 \ExplSyntaxOn
-\makeatletter
 \cs_new:Npn \kana_map:n #1 {
   \ifcase #1 \or ア \or イ \or ウ \or エ \or オ \or カ \or キ \or ク \or ケ \or コ
   \or サ \or シ \or ス \or セ \or ソ \or タ \or チ \or ツ \or テ \or ト 
@@ -15,13 +14,13 @@
   \or ル \or レ \or ロ \or ワ \or ヲ \or ン \fi
 }
 \NewDocumentCommand{\kana}{m}{
-  \expandafter \kana_map:n \csname c@#1\endcsname
+  \expandafter \kana_map:n \value{#1}
 }
-\AddEnumerateCounter{\kana}{\kana_map:n}{ア}
-\makeatother
 \ExplSyntaxOff
+\AddEnumerateCounter{\kana}{\kana_map:n}{ア}
 %\RenewDocumentCommand{\emph}{m}{\textbf{\textsf{\textgt{#1}}}}
-\RenewDocumentCommand{\emph}{m}{{\sffamily\bfseries\gtfamily\kanjiseries{m}\selectfont #1}}
+%\RenewDocumentCommand{\emph}{m}{{\sffamily\bfseries\gtfamily\kanjiseries{m}\selectfont #1}}
+\DeclareTextFontCommand{\emph}{\sffamily\bfseries\gtfamily\kanjiseries{m}}
 
 %%% mathematics
 % change font
@@ -46,10 +45,21 @@
 \NewDocumentCommand{\mqty}{m}{\begin{matrix} #1 \end{matrix}}
 \NewDocumentCommand{\avg}{m}{\langle #1 \rangle}
 \NewDocumentCommand{\order}{m}{\mathcal{O}(#1)}
-\NewDocumentCommand{\eval}{m}{
-  #1 \mathclose{
-    \rule[-2.0ex]{0.4pt}{5.5ex}\,
-  }
+%\NewDocumentCommand{\eval}{m}{
+%  #1 \mathclose{
+%    \rule[-2.0ex]{0.4pt}{5.5ex}\,
+%  }
+%}
+\NewDocumentCommand{\eval}{ s O{\bigg} m }{%
+  \IfBooleanTF{#1}{%
+    \left. #3 \right|%
+  }{%
+    \IfValueTF{#2}{%
+      \mathopen{#2.} #3 \mathclose{#2\rvert}%
+    }{%
+      #3 \mathclose{\rvert}%
+    }%
+  }%
 }
 
 % differential op
@@ -60,13 +70,13 @@
 
 %% DIFFCOEFF PKG SETTING
 \difdef { l } { dn } { style = d^ }
-\NewDocumentCommand \dn { m m } { \dl.dn.[#1]{#2}\, }
+\NewDocumentCommand \dn { m m } { \dl.dn.[#1]{#2} }
 \difdef{l}{p}{op-symbol=\partial}
 \NewDocumentCommand \dlp {} { \dl.p. }
-\difdef { l } {} {outer-Rdelim = \,}
+%\difdef { l } {} {outer-Rdelim = \,}
+\difdef { l } {} { outer-Rdelim = \mathchoice{\,}{}{}{} }
 \difdef {f, s} {D}{op-symbol = \symup{D}}
 \NewDocumentCommand{\Dl}{m}{\upDelta{#1}}
-
 
 %%% abbrv.
 \NewDocumentCommand{\eps}{}{\varepsilon}
