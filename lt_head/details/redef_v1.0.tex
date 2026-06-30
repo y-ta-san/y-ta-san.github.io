@@ -38,8 +38,11 @@
 \NewDocumentCommand{\Z}{}{\symbb{Z}}
 
 % const.
-\RenewDocumentCommand{\i}{}{\symup{i}}
-\NewDocumentCommand{\e}{}{\symup{e}}
+\let\i\relax
+\DeclareMathOperator{\i}{\symup{i}}
+\DeclareMathOperator{\e}{\symup{e}}
+%\RenewDocumentCommand{\i}{}{\symup{i}}
+%\NewDocumentCommand{\e}{}{\symup{e}}
 
 % matrix, average, order
 \NewDocumentCommand{\mqty}{m}{\begin{matrix} #1 \end{matrix}}
