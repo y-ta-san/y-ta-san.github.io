@@ -72,12 +72,12 @@
 \NewDocumentCommand{\nb}{}{\nabla}
 
 %% DIFFCOEFF PKG SETTING
-\difdef { l } { dn } { style = d^ }
+\difdef { l } { dn } { style = d^, outer-Rdelim = \mathchoice{\,}{}{}{},outer-Ldelim = \mathchoice{\,}{}{}{}}
 \NewDocumentCommand \dn { m m } { \dl.dn.[#1]{#2} }
 \difdef{l}{p}{op-symbol=\partial}
 \NewDocumentCommand \dlp {} { \dl.p. }
 %\difdef { l } {} {outer-Rdelim = \,}
-\difdef { l } {} { outer-Rdelim = \mathchoice{\,}{}{}{} }
+\difdef { l } {} { outer-Rdelim = \mathchoice{\,}{}{}{},outer-Ldelim = \mathchoice{\,}{}{}{} }
 \difdef {f, s} {D}{op-symbol = \symup{D}}
 \NewDocumentCommand{\Dl}{m}{\upDelta{#1}}
 

@@ -1,29 +1,34 @@
-\documentclass[unicode,9pt]{beamer}
+\documentclass[unicode,10pt]{beamer}
 
 
 \input{~/Documents/y-ta-san.github.io/lt_head/details/pkgimport_v2.0_beamer.tex}
 \input{~/Documents/y-ta-san.github.io/lt_head/details/redef_v2.0.tex}
 
 \usepackage{geometry}
-\geometry{papersize={200mm,112.5mm}}
+\geometry{papersize={160mm,90mm}}
 \usepackage{luatexja}
 \usepackage[haranoaji]{luatexja-preset}
 %\usepackage{unicode-math}
 %\usepackage{diffcoeff}
 
 \usetheme{default}
-\setmathfont{ArsenalMath}
-\setmainfont[
-  BoldFont={Arsenal Bold},
-  BoldItalicFont={Arsenal BoldItalic},
-  ItalicFont={Arsenal Italic}
-]{Arsenal Regular}
+%\setmathfont{ArsenalMath}
+%\setmathfont{kpmath-sans.otf}
+\setmathfont{Concrete Math}
+%\setmathfont{Concrete Math}
+%\setmainfont[
+%  BoldFont={Arsenal Bold},
+%  BoldItalicFont={Arsenal BoldItalic},
+%  ItalicFont={Arsenal Italic}
+%]{Arsenal Regular}
+%\setmainfont{kpsans-regular.otf}
+\setmainfont{CMU Concrete}
 \setmainjfont[
-  BoldFont={A P-OTF UD ShinGoCon90 Pr6N R},
-]{A P-OTF UD ShinGoCon90 Pr6N L}
+  BoldFont={A P-OTF UD ShinGoCon90 Pr6N M},
+]{A P-OTF UD ShinGoCon90 Pr6N R}
 
 % 配色の設定
-\definecolor{LightOrange}{HTML}{FEEEC9}
+\definecolor{LightOrange}{HTML}{FFE66F}
 \definecolor{AccentOrange}{HTML}{FF8C00}
 
 \setbeamercolor{background canvas}{bg=white}
@@ -56,5 +61,52 @@
   \begin{beamercolorbox}[wd=\paperwidth, ht=1.35\zh, dp=.75\zh, leftskip=4\zh, rightskip=4\zh]{footline}
     {\scriptsize \hfill \insertframenumber{} / \inserttotalframenumber}
   \end{beamercolorbox}
+
+\definecolor{AlertRed}{HTML}{FF6B6B}
+\definecolor{ExampleGreen}{HTML}{88D49E}
+
+% 通常のblock
+\setbeamertemplate{blocks}[default]
+\setbeamercolor{block title}{bg=LightOrange, fg=black!90}
+\setbeamercolor{block body}{bg=LightOrange!20, fg=black!90}
+
+% 警告・強調用のalertblock
+\setbeamercolor{block title alerted}{bg=AlertRed, fg=white}
+\setbeamercolor{block body alerted}{bg=AlertRed!10, fg=black!90}
+
+% 具体例用のexampleblock
+\setbeamercolor{block title example}{bg=ExampleGreen, fg=black!90}
+\setbeamercolor{block body example}{bg=ExampleGreen!20, fg=black!90}
 }
 
+
+%\usepackage[most]{tcolorbox}
+
+% block用追加カラーの定義（前回と同じ）
+\definecolor{AlertRed}{HTML}{FF6B6B}
+\definecolor{ExampleGreen}{HTML}{88D49E}
+
+% tcolorboxの共通スタイル設定
+\tcbset{
+  my_beamer_block_style/.style={
+    enhanced,
+    boxrule=0pt, % 枠線をなしにしてフラットに
+    coltitle=black!90, % タイトルの文字色
+    fonttitle=\bfseries, % タイトルを太字に
+    sharp corners, % 四角いデザイン
+    toptitle=1.5mm, bottomtitle=1.5mm, % タイトル部分の上下余白
+    left=3mm, right=3mm, top=2mm, bottom=2mm, % 本文部分の余白
+  }
+}
+
+% 独自のblock環境（myblock）を新しく定義
+\newtcolorbox{box1}[1]{
+  boxrule=0pt,
+  my_beamer_block_style,
+  colbacktitle=LightOrange,
+  colback=LightOrange!20,
+  width=0.8\linewidth,
+  toptitle=0.5mm, bottomtitle=0.5mm,
+  center,
+  title=#1
+}
