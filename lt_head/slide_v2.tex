@@ -30,10 +30,13 @@
 % 配色の設定
 \definecolor{LightOrange}{HTML}{FFE66F}
 \definecolor{AccentOrange}{HTML}{FF8C00}
+\definecolor{BCGColor}{HTML}{FFFAF0}
+\definecolor{TEXTColor}{HTML}{2C3E50}
 
-\setbeamercolor{background canvas}{bg=white}
-\setbeamercolor{frametitle}{bg=LightOrange, fg=black!90}
-\setbeamercolor{title}{bg=LightOrange, fg=black!90}
+\setbeamercolor{normal text}{fg=TEXTColor}
+\setbeamercolor{background canvas}{bg=BCGColor}
+\setbeamercolor{frametitle}{bg=LightOrange, fg=TEXTColor}
+\setbeamercolor{title}{bg=LightOrange, fg=TEXTColor}
 \setbeamercolor{itemize item}{fg=AccentOrange}
 \setbeamercolor{itemize subitem}{fg=AccentOrange}
 
@@ -105,6 +108,8 @@
   my_beamer_block_style,
   colbacktitle=LightOrange,
   colback=LightOrange!20,
+  coltext=TEXTColor,
+  coltitle=TEXTColor,
   width=0.8\linewidth,
   toptitle=0.5mm, bottomtitle=0.5mm,
   center,
