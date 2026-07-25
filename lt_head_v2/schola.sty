@@ -1,0 +1,140 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{schola}[2026/07/24 Custom layout and packages for jlreq]
+
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage{wrapstuff}
+%\RequirePackage{subcaption}
+\RequirePackage{multicol}
+\RequirePackage{float}
+
+\RequirePackage{amsmath,amsthm}
+\allowdisplaybreaks[2]
+\RequirePackage{mathtools}
+\RequirePackage{nccmath}
+\RequirePackage{cancel}
+\RequirePackage{empheq}
+
+\RequirePackage{luatexja,luatexja-fontspec}
+\RequirePackage[math-style=ISO,warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+
+\setmainfont[RawFeature=+liga]{TeX Gyre Schola}
+\setsansfont[BoldFont={TeXGyreHeros-Bold}]{TeXGyreHeros-Regular}
+\setmathfont{ScholaMath-TY.otf}
+\setmainjfont[RawFeature={+kern,+pkna},BoldFont={A P-OTF Ryumin Pr6N B-KL}]{A P-OTF Ryumin Pr6N R-KL}
+\setsansjfont[RawFeature={+kern,+pkna},BoldFont={PA1GothicStdN-Medium}]{PA1GothicStdN-Regular}
+
+\RequirePackage{physics2}
+\usephysicsmodule{ab}
+\usephysicsmodule{braket}
+\usephysicsmodule{diagmat}
+\usephysicsmodule{doubleprod}
+\usephysicsmodule{xmat}
+\RequirePackage[ISO]{diffcoeff}
+%\RequirePackage[a]{esvect}
+
+\RequirePackage[range-phrase=\text{\,--\,},simplify-uncertainty]{siunitx}
+\DeclareSIUnit\angstrom{\text{Å}}
+
+\RequirePackage[shortlabels,inline]{enumitem}
+\RequirePackage{lastpage}
+
+\RequirePackage{marginfix}
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage[listings]{tcolorbox}
+\tcbuselibrary{breakable}
+\tcbuselibrary{raster,skins}
+\tcbset{
+  colback=white,
+  colframe=black,
+  sharp corners,
+  boxrule=0.4pt,
+  enhanced,
+}
+
+\RequirePackage{varwidth}
+\RequirePackage[calc]{pict2e}
+\RequirePackage[calc]{picture}
+\RequirePackage{circledsteps}
+
+\RequirePackage{listings}
+\lstset{
+  basicstyle={\ttfamily\gtfamily},
+  identifierstyle={\ttfamily},
+  keywordstyle={\ttfamily\bfseries},
+  frame={tblr},
+  breaklines=true,
+  columns=[l]{fullflexible},
+  numbers=left,
+  xleftmargin=5ex,
+  xrightmargin=3ex,
+  numberstyle={\ttfamily\scriptsize},
+  numbersep=3ex,
+  lineskip=-1.ex,
+  backgroundcolor=\color{black!3!white},
+  fontadjust=true
+}
+\RequirePackage{verbatim}
+\RequirePackage{comment}
+\RequirePackage{natbib}
+\RequirePackage[english]{babel}
+
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textsf{\textgt{\leftmark}}}
+\fancyhead[R]{\thepage}
+\setlength{\headheight}{16.35997pt}
+\addtolength{\topmargin}{-6.40172pt}
+
+\jlreqsetup{
+  itemization_beforeafter_space = 0pt,
+  itemization_labelsep = 0.5\zw,
+  caption_font = \small,
+  caption_label_font = \small\bfseries,
+}
+
+\ModifyHeading{section}{
+  font={\Large\bfseries\sffamily\gtfamily\color{blue}},
+  lines=2,
+  before_lines=1
+}
+
+\ModifyHeading{subsection}{
+  font={\normalsize\bfseries\sffamily\gtfamily\color{blue}},
+  lines=1,
+  before_lines=1
+}
+
+\ModifyHeading{subsubsection}{
+  font={\normalsize\bfseries\sffamily\gtfamily\color{blue}},
+  lines=1,
+  before_lines=0
+}
+
+\SetBlockHeadingSpaces{
+  {
+    _section{lines=2, before_lines=1},
+    _subsection{lines=1, before_lines=0},
+    _subsubsection{lines=1, before_lines=0}
+  }
+  {
+    _section{lines=2, before_lines=1},
+    _subsection{lines=1, before_lines=0}
+  }
+  {
+    _subsection{lines=1, before_lines=1},
+    _subsubsection{lines=1, before_lines=0}
+  }
+}
+
+\RequirePackage[luatex,pdfencoding=auto]{hyperref}
+\hypersetup{
+  colorlinks = true,
+  allcolors = {blue},
+}
+\makeatletter
+\let\jlreq@old@marginparreset\@marginparreset
+\renewcommand{\@marginparreset}{\jlreq@old@marginparreset\raggedright}
+\makeatother
+\endinput
